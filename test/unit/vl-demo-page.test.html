@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+
+  <script type="module" src="../../src/vl-demo-page.js"></script>
+  <script type="module" src="../../src/vl-demo.js"></script>
+</head>
+
+<body>
+  <test-fixture id="vl-demo-page-fixture">
+    <template>
+      <vl-demo-page>
+        <vl-demo></vl-demo>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('<vl-demo-page>', () => {
+      const should = chai.should();
+
+      test('bevat een vl-template met main slot', () => {
+        const page = fixture('vl-demo-page-fixture');
+        const template = page.shadowRoot.querySelector('vl-template');
+        const main = template.querySelector('[slot="main"]');
+        should.exist(template);
+        should.exist(main);
+      });
+
+      test('bevat een vl-content-header', () => {
+        const page = fixture('vl-demo-page-fixture');
+        const template = page.shadowRoot.querySelector('vl-template');
+        const main = template.querySelector('[slot="main"]');
+        const contentHeader = main.querySelector('vl-content-header');
+        const img = contentHeader.querySelector('img');
+        const contextLink = contentHeader.querySelector('a[slot="context-link"]');
+        const titleLink = contentHeader.querySelector('a[slot="title-link"]');
+        should.exist(contentHeader);
+        should.exist(contextLink);
+        should.exist(titleLink);
+        assert.equal(contextLink.href, 'https://webcomponenten.omgeving.vlaanderen.be/');
+        assert.equal(titleLink.href, 'https://webcomponenten.omgeving.vlaanderen.be/');
+      });
+
+      test('bevat een sectie met layout grid en kolommen', () => {
+        const page = fixture('vl-demo-page-fixture');
+        const template = page.shadowRoot.querySelector('vl-template');
+        const main = template.querySelector('[slot="main"]');
+        const section = main.querySelector('[is="vl-region"]');
+        const layout = section.querySelector('[is="vl-layout"]');
+        const grid = layout.querySelector('[is="vl-grid"]');
+        const columns = grid.querySelectorAll('[is="vl-column"]');
+        should.exist(section);
+        should.exist(layout);
+        should.exist(grid);
+        should.exist(columns);
+        assert.lengthOf(columns, 2);
+      });
+
+      test('bevat een titel op basis van het webcomponent attribuut', () => {
+        const page = fixture('vl-demo-page-fixture');
+        const title = page.shadowRoot.querySelector('h1[is="vl-h1"]');
+        assert.equal(title.innerText, '');
+        const webcomponent = 'vl-demo';
+        page.setAttribute('data-vl-webcomponent', webcomponent);
+        assert.equal(title.innerText, `Demo ${webcomponent}`);
+      });
+
+      test('bevat een kolom met documentatie informatie', () => {
+        const page = fixture('vl-demo-page-fixture');
+        const link = 'http://webcomponenten.omgeving.vlaanderen.be/';
+        page.setAttribute('data-vl-link', link);
+        const columns = page.shadowRoot.querySelectorAll('[is="vl-column"]');
+        const title = columns[0].querySelector('h2[is="vl-h2"]');
+        const p = columns[0].querySelector('p');
+        const a = p.querySelector('a');
+        assert.equal(title.innerText, 'Documentatie');
+        assert.equal(p.innerText, 'Meer voorbeelden en documentatie raadpleegbaar via de website van Webuniversum.');
+        assert.equal(a.href, link);
+      });
+
+      test('bevat een kolom met demo slot elementen', () => {
+        const page = fixture('vl-demo-page-fixture');
+        const columns = page.shadowRoot.querySelectorAll('[is="vl-column"]');
+        const title = columns[1].querySelector('h2[is="vl-h2"]');
+        const slot = columns[1].querySelector('slot');
+        assert.equal(title.innerText, "Demo's");
+        assert.deepEqual(slot.assignedElements(), [...page.querySelectorAll('vl-demo')]);
+      });
+    });
+  </script>
+</body>
+
+</html>

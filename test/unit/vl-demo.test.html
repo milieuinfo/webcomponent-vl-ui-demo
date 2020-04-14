@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+
+  <script type="module" src="../../src/vl-demo.js"></script>
+</head>
+
+<body>
+  <test-fixture id="vl-demo-fixture">
+    <template>
+      <vl-demo>
+        <span>dit is een demo</span>
+        <span>dit is een demo</span>
+      </vl-demo>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('<vl-demo>', () => {
+      const should = chai.should();
+      const sandbox = sinon.sandbox.create();
+
+      teardown(() => {
+        sandbox.restore();
+      });
+
+      test('toont een titel indien er geen titel attribuut aanwezig is', () => {
+        const demo = fixture('vl-demo-fixture');
+        assert.equal(demo._titleElement.innerText, 'Demo');
+      });
+
+      test('toont een titel gebasseerd op het titel attribuut', () => {
+        const demo = fixture('vl-demo-fixture');
+        const title = 'titel';
+        demo.setAttribute('data-vl-title', title);
+        assert.equal(demo._titleElement.innerText, title);
+      });
+
+      test('bevat een pre tag met line-numbers en language-markup classes', () => {
+        const demo = fixture('vl-demo-fixture');
+        assert.isTrue(demo._preElement.classList.contains('line-numbers'));
+        assert.isTrue(demo._preElement.classList.contains('language-markup'));
+      });
+
+      test('de code elementen worden gevormd en toegevoegd waarna de Prism highlight functie aangeroepen wordt', () => {
+        sandbox.stub(Prism, 'highlightAllUnder');
+        const demo = fixture('vl-demo-fixture');
+        assert.equal(demo._codeElement.textContent, '<span>dit is een demo</span>\n\t\t\t\t\t<span>dit is een demo</span>');
+        assert(Prism.highlightAllUnder.calledWith(demo._preElement));
+      });
+    });
+  </script>
+</body>
+
+</html>
