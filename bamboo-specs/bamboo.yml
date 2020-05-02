@@ -2,7 +2,7 @@
 version: 2
 plan:
   project-key: WEBCO
-  key: VLDEMO
+  key: VLUIDEMO
   name: webcomponent-vl-ui-demo
 
 triggers:
@@ -51,7 +51,7 @@ Release:
 ---
 version: 2
 plan:
-  key: WEBCO-VLDEMO
+  key: WEBCO-VLUIDEMO
 
 plan-permissions:
   - groups:
