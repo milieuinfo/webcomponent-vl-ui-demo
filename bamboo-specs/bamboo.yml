@@ -3,7 +3,7 @@ version: 2
 plan:
   project-key: WEBCO
   key: VLDEMO
-  name: webcomponent-vl-demo
+  name: webcomponent-vl-ui-demo
 
 triggers:
   - polling: 130

@@ -1,5 +1,5 @@
 {
-	"name": "vl-demo",
+	"name": "vl-ui-demo",
 	"version": "0.0.0",
 	"description": "Componenten die gebruikt worden om de demo pagina te construeren.",
 	"author": "DIDM",
@@ -11,13 +11,13 @@
 		"node": "./index.js",
 		"default": "./index.js"
 	},
-	"homepage": "https://github.com/milieuinfo/webcomponent-vl-demo#readme",
+	"homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-demo#readme",
 	"bugs": {
-		"url": "https://github.com/milieuinfo/webcomponent-vl-demo/issues"
+		"url": "https://github.com/milieuinfo/webcomponent-vl-ui-demo/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/milieuinfo/webcomponent-vl-demo.git"
+		"url": "git+https://github.com/milieuinfo/webcomponent-vl-ui-demo.git"
 	},
 	"publishConfig": {
 		"registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
