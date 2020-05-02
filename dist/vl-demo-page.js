@@ -29,7 +29,7 @@ export class VlDemoPage extends VlElement(HTMLElement) {
             <style>
                 @import '/node_modules/vl-ui-grid/src/style.css';
                 @import '/node_modules/vl-ui-titles/src/style.css';
-                @import '/src/style.css';
+                @import '/node_modules/vl-ui-demo/dist/style.css';
 
                 ::slotted(vl-demo:not(:first-child)) {
                     display: block;
