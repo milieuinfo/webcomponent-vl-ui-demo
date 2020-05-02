@@ -1,6 +1,7 @@
 import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
 import '/node_modules/prismjs/prism.js';
 import '/node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js';
+import '/node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
 import '/node_modules/vl-ui-titles/dist/vl-titles.js';
 
 /**
@@ -61,16 +62,36 @@ export class VlDemo extends VlElement(HTMLElement) {
     }
 
     _renderCode() {
-        const regex = /[\u00A0-\u9999<>&](?!#)/gim;
-        const elements = this._slotElement.assignedElements().map(element => {
-            return element.outerHTML.trim().replace(regex, match => '&#' + match.charCodeAt(0) + ';');
-        }).join('\n\t\t\t\t\t');
+        const elements = this._slotElement.assignedElements().map(element => this._getCode(element)).join('\n\t\t\t');
         this._codeElement.appendChild(this._template(`${elements}`));
         Prism.highlightAllUnder(this._preElement);
     }
 
     _titleChangedCallback(oldValue, newValue) {
         this._titleElement.innerText = newValue;
+    }
+
+    _getCode(element) {
+        let code = element.outerHTML;
+        code = this._escapeTags(code);
+        code = this._stripEmptyAttributeDefinition(code);
+        code = this._normalizeWhitespace(code);
+        return code;
+    }
+
+    _escapeTags(code) {
+        const regex = /[\u00A0-\u9999<>&](?!#)/gim;
+        return code.replace(regex, match => '&#' + match.charCodeAt(0) + ';');
+    }
+
+    _stripEmptyAttributeDefinition(code) {
+        return code.split('=""').join('');
+    }
+
+    _normalizeWhitespace(code) {
+        return Prism.plugins.NormalizeWhitespace.normalize(code, {
+            'spaces-to-tabs': 4
+        });
     }
 }
 

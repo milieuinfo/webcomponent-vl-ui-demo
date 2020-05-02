@@ -37,6 +37,7 @@ export class VlDemoPage extends VlElement(HTMLElement) {
                 }
             </style>
             <vl-template>
+                <vl-header id="header" slot="header" data-vl-identifier="59188ff6-662b-45b9-b23a-964ad48c2bfb"></vl-header>
                 <div slot="main">
                     <vl-content-header>
                         <img is="vl-image" slot="image" src="/src/img/default.jpg" srcset="/src/img/mobile.jpg 320w, /src/img/default.jpg 1024w, /src/img/wide.jpg 1600w">
@@ -61,6 +62,7 @@ export class VlDemoPage extends VlElement(HTMLElement) {
                         </div>
                     </section>
                 </div>
+                <vl-footer id="footer" slot="footer" data-vl-identifier="0337f8dc-3266-4e7a-8f4a-95fd65189e5b"></vl-footer>
             </vl-template>
         `);
     }

@@ -16,14 +16,5 @@
   
 pre {
     border: 1px dotted lightgray !important;
-    white-space: pre-wrap !important;
     background: #f7f7f8 !important;
-    margin-bottom: 1.5rem !important;
-    padding-left: 0px !important;
-    padding-bottom: 0px !important;
-}
-  
-pre > code {
-    white-space: pre !important;
-    left: -10rem;
-}
+} 
