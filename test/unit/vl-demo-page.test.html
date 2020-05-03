@@ -57,7 +57,7 @@
         should.exist(layout);
         should.exist(grid);
         should.exist(columns);
-        assert.lengthOf(columns, 2);
+        assert.lengthOf(columns, 1);
       });
 
       test('bevat een titel op basis van het webcomponent attribuut', () => {
@@ -69,11 +69,12 @@
         assert.equal(title.innerText, `Demo ${webcomponent}`);
       });
 
-      test('bevat een kolom met documentatie informatie', () => {
+      test('bevat een kolom met documentatie informatie indien er een link attribuut is', () => {
         const page = fixture('vl-demo-page-fixture');
         const link = 'http://webcomponenten.omgeving.vlaanderen.be/';
         page.setAttribute('data-vl-link', link);
         const columns = page.shadowRoot.querySelectorAll('[is="vl-column"]');
+        assert.lengthOf(columns, 2);
         const title = columns[0].querySelector('h2[is="vl-h2"]');
         const p = columns[0].querySelector('p');
         const a = p.querySelector('a');
@@ -85,8 +86,8 @@
       test('bevat een kolom met demo slot elementen', () => {
         const page = fixture('vl-demo-page-fixture');
         const columns = page.shadowRoot.querySelectorAll('[is="vl-column"]');
-        const title = columns[1].querySelector('h2[is="vl-h2"]');
-        const slot = columns[1].querySelector('slot');
+        const title = columns[0].querySelector('h2[is="vl-h2"]');
+        const slot = columns[0].querySelector('slot');
         assert.equal(title.innerText, "Demo's");
         assert.deepEqual(slot.assignedElements(), [...page.querySelectorAll('vl-demo')]);
       });
