@@ -27,6 +27,14 @@
     </template>
   </test-fixture>
 
+  <test-fixture id="vl-demo-class-fixture">
+    <template>
+      <vl-demo>
+        <span class="test">dit is een demo</span>
+      </vl-demo>
+    </template>
+  </test-fixture>
+
   <script>
     suite('<vl-demo>', () => {
       const should = chai.should();
@@ -61,10 +69,10 @@
         assert(Prism.highlightAllUnder.calledWith(demo._preElement));
       });
 
-      test('attributen zonder waarde worden getoond zonder lege value', () => {
+      test('class attribuut zal verwijderd worden', () => {
         sandbox.stub(Prism, 'highlightAllUnder');
-        const demo = fixture('vl-demo-attribute-fixture');
-        assert.equal(demo._codeElement.textContent, '<span disabled>dit is een demo</span>');
+        const demo = fixture('vl-demo-class-fixture');
+        assert.equal(demo._codeElement.textContent, '<span>dit is een demo</span>');
         assert(Prism.highlightAllUnder.calledWith(demo._preElement));
       });
     });

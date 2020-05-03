@@ -5,6 +5,8 @@
     <title>vl-demo voorbeeld</title>
 
     <script type="module" src="/src/vl-demo-all.js"></script>
+    <script type="module" src="/node_modules/vl-ui-titles/dist/vl-titles.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-core/dist/style.css" />
 </head>
 
@@ -12,6 +14,7 @@
     <vl-demo-page id="demo-page" data-vl-webcomponent="vl-demo"
         data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-button">
         <vl-demo data-vl-title="Demo 1">
+            <h1 is="vl-h1">test</h1>
             <p>dit is een demo</p>
         </vl-demo>
 

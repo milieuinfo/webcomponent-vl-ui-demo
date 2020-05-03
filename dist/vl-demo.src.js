@@ -74,11 +74,17 @@ code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shad
     }
 
     _getCode(element) {
+        element = this._removeClassAttribute(element);
         let code = element.outerHTML;
         code = this._escapeTags(code);
         code = this._stripEmptyAttributeDefinition(code);
         code = this._normalizeWhitespace(code);
         return code;
+    }
+
+    _removeClassAttribute(element) {
+        element.removeAttribute('class');
+        return element;
     }
 
     _escapeTags(code) {
