@@ -64,7 +64,7 @@ code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shad
     }
 
     _renderCode() {
-        const elements = this._slotElement.assignedElements().map(element => this._getCode(element)).join('\n\t\t\t');
+        const elements = this._slotElement.assignedElements().map(element => this._getCode(element.cloneNode(true))).join('\n\t\t\t');
         this._codeElement.appendChild(this._template(`${elements}`));
         Prism.highlightAllUnder(this._preElement);
     }
