@@ -50,14 +50,8 @@ code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shad
                     <section is="vl-region" no-space-bottom>
                         <div is="vl-layout">
                             <h1 is="vl-h1"></h1>
-                            <div is="vl-grid" is-stacked slot="main">
-                                <div is="vl-column" size="12">
-                                    <h2 is="vl-h2">Documentatie</h2>
-                                    <p>
-                                        Meer voorbeelden en documentatie raadpleegbaar via de <a id="link" href="https://overheid.vlaanderen.be/webuniversum/v3/documentation">website</a> van Webuniversum.
-                                    </p>
-                                </div>
-                                <div is="vl-column" size="12">
+                            <div id="grid" is="vl-grid" is-stacked slot="main">
+                                <div id="demo" is="vl-column" size="12">
                                     <h2 is="vl-h2">Demo's</h2>
                                     <slot></slot>
                                 </div>
@@ -74,12 +68,34 @@ code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shad
         return this._shadow.querySelector('h1');
     }
 
+    get _gridElement() {
+        return this._shadow.querySelector('#grid');
+    }
+
     get _linkElement() {
-        return this._shadow.querySelector('#link');
+        return this._gridElement.querySelector('#link');
+    }
+
+    get _demoElement() {
+        return this._gridElement.querySelector('#demo');
+    }
+
+    _getLinkTemplate(link) {
+        return this._template(`
+            <div id="link" is="vl-column" size="12">
+                <h2 is="vl-h2">Documentatie</h2>
+                <p>
+                    Meer voorbeelden en documentatie raadpleegbaar via de <a href="${link}">website</a> van Webuniversum.
+                </p>
+            </div>
+        `);
     }
 
     _linkChangedCallback(oldValue, newValue) {
-        this._linkElement.setAttribute('href', newValue);
+        if (this._linkElement) {
+            this._linkElement.remove();
+        }
+        this._gridElement.insertBefore(this._getLinkTemplate(newValue), this._demoElement);
     }
 
     _webcomponentChangedCallback(oldValue, newValue) {
