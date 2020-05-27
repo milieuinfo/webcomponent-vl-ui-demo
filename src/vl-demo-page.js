@@ -42,7 +42,7 @@ export class VlDemoPage extends VlElement(HTMLElement) {
                 <vl-header id="header" slot="header" data-vl-identifier="59188ff6-662b-45b9-b23a-964ad48c2bfb" data-vl-development></vl-header>
                 <div slot="main">
                     <vl-content-header>
-                        <img is="vl-image" slot="image" src="/src/default.jpg" srcset="/src/mobile.jpg 320w, /src/default.jpg 1024w, /src/wide.jpg 1600w">
+                        <img is="vl-image" slot="image" src="/node_modules/vl-ui-demo/dist/default.jpg" srcset="/node_modules/vl-ui-demo/dist/mobile.jpg 320w, /node_modules/vl-ui-demo/dist/default.jpg 1024w, /node_modules/vl-ui-demo/dist/wide.jpg 1600w">
                         <a slot="context-link" href="https://webcomponenten.omgeving.vlaanderen.be">Vlaanderen</a>
                         <a slot="title-link" href="https://webcomponenten.omgeving.vlaanderen.be">Webcomponenten</a>
                     </vl-content-header>

@@ -40,7 +40,6 @@
 		"test:server:start": "http-server &",
 		"release": "np",
 		"release:prepare": "npm explore vl-ui-util -- npm run release-component:prepare $(pwd) demo",
-		"postrelease:prepare": "replace '/src/(\\w+).jpg' '/node_modules/vl-ui-demo/dist/$1.jpg' dist/vl-*.js",
 		"release:testless": "np --yolo",
 		"demo": "http-server"
 	},
