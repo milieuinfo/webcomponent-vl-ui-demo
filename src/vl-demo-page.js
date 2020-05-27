@@ -1,8 +1,10 @@
 import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
 import '/node_modules/vl-ui-template/dist/vl-template.js';
+import '/node_modules/vl-ui-header/dist/vl-header.js';
 import '/node_modules/vl-ui-content-header/dist/vl-content-header.js';
 import '/node_modules/vl-ui-grid/dist/vl-grid.js';
 import '/node_modules/vl-ui-titles/dist/vl-titles.js';
+import '/node_modules/vl-ui-footer/dist/vl-footer.js';
 
 /**
  * VlDemoPage
@@ -37,14 +39,14 @@ export class VlDemoPage extends VlElement(HTMLElement) {
                 }
             </style>
             <vl-template>
-                <vl-header id="header" slot="header" data-vl-identifier="59188ff6-662b-45b9-b23a-964ad48c2bfb"></vl-header>
+                <vl-header id="header" slot="header" data-vl-identifier="59188ff6-662b-45b9-b23a-964ad48c2bfb" data-vl-development></vl-header>
                 <div slot="main">
                     <vl-content-header>
                         <img is="vl-image" slot="image" src="/src/default.jpg" srcset="/src/mobile.jpg 320w, /src/default.jpg 1024w, /src/wide.jpg 1600w">
                         <a slot="context-link" href="https://webcomponenten.omgeving.vlaanderen.be">Vlaanderen</a>
                         <a slot="title-link" href="https://webcomponenten.omgeving.vlaanderen.be">Webcomponenten</a>
                     </vl-content-header>
-                    <section is="vl-region" no-space-bottom>
+                    <section is="vl-region">
                         <div is="vl-layout">
                             <h1 is="vl-h1"></h1>
                             <div id="grid" is="vl-grid" is-stacked slot="main">
@@ -56,7 +58,7 @@ export class VlDemoPage extends VlElement(HTMLElement) {
                         </div>
                     </section>
                 </div>
-                <vl-footer id="footer" slot="footer" data-vl-identifier="0337f8dc-3266-4e7a-8f4a-95fd65189e5b"></vl-footer>
+                <vl-footer id="footer" slot="footer" data-vl-identifier="0337f8dc-3266-4e7a-8f4a-95fd65189e5b" data-vl-development></vl-footer>
             </vl-template>
         `);
     }
