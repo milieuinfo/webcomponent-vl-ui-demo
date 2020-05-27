@@ -1,0 +1,21 @@
+// ==========================================================================
+// Vlaanderen UI -- Demo
+// ==========================================================================
+@charset "utf-8";
+
+// ==========================================================================
+// Style
+// ==========================================================================
+@import "../../node_modules/prismjs/themes/prism.css";
+@import "../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
+
+.demo {
+    border: 1px dotted lightgray;
+    margin-bottom: 15px;
+}
+  
+pre {
+    border: 1px dotted lightgray !important;
+    background: #f7f7f8 !important;
+    white-space: pre-wrap !important;
+} 

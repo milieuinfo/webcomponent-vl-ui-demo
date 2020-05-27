@@ -1,18 +1,18 @@
-# vl-demo
-![GitHub issues](https://img.shields.io/github/issues-raw/milieuinfo/webcomponent-vl-demo) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/milieuinfo/webcomponent-vl-demo) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/milieuinfo/webcomponent-vl-demo)
+# vl-ui-demo
+![GitHub issues](https://img.shields.io/github/issues-raw/milieuinfo/webcomponent-vl-ui-demo) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/milieuinfo/webcomponent-vl-ui-demo) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/milieuinfo/webcomponent-vl-ui-demo)
 
 Componenten die gebruikt worden om de demo pagina te construeren.
 
 ## Installatie
 ``` bash
-$ npm install --save vl-demo
+$ npm install --save vl-ui-demo
 ```
 
 ## API
 De [API](https://webcomponenten.omgeving.vlaanderen.be/doc/VlDemo.html) bevat een overzicht van de ondersteunde attributen en een beschrijving van de beschikbare functies.
 
 ## Demo
-De [demo](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-o.html) pagina bevat een overzicht van de mogelijkheden met code voorbeelden. Lokaal opstarten kan met onderstaand [NPM](https://www.npmjs.com) script.
+De [demo](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-demo.html) pagina bevat een overzicht van de mogelijkheden met code voorbeelden. Lokaal opstarten kan met onderstaand [NPM](https://www.npmjs.com) script.
 ``` bash
 $ npm run demo
 ```
@@ -37,7 +37,7 @@ Uiteraard is het ook toegelaten om mee te ontwikkelen door gebruik te maken van 
 3. Elke PR moet een issue verwijzing hebben, zodat deze automatisch opgenomen kan worden in de release notes
 
 ## Versionering
-We gebruiken [Semantic Versioning](https://semver.org) en voorzien elke release van release notes, zie een overzicht van de [releases](https://github.com/milieuinfo/webcomponent-vl-demo/releases).
+We gebruiken [Semantic Versioning](https://semver.org) en voorzien elke release van release notes, zie een overzicht van de [releases](https://github.com/milieuinfo/webcomponent-vl-ui-demo/releases).
 
 ## Browser ondersteuning
 De webcomponenten zijn ontwikkeld door uitsluitend gebruik te maken van web standaarden (JavaScript, HTML, CSS). Hierdoor worden al de evergreen browser automatisch ondersteund.
@@ -47,7 +47,7 @@ De webcomponenten zijn ontwikkeld door uitsluitend gebruik te maken van web stan
 | <center>Chrome</center> | <center>Firefox</center> | <center>Safari</center> | <center>Opera</center> | <center>Edge</center> |
 
 ## Credits
-Zie de lijst van [ontwikkelaars](https://github.com/milieuinfo/webcomponent-vl-demo/graphs/contributors) die meegewerkt hebben aan de webcomponent.
+Zie de lijst van [ontwikkelaars](https://github.com/milieuinfo/webcomponent-vl-ui-demo/graphs/contributors) die meegewerkt hebben aan de webcomponent.
 
 ## Contact
 Heb je suggesties, opmerkingen of tips? Voel je dan vrij om ons te contacteren via help@omgevingvlaanderen.be.
