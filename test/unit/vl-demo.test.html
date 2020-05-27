@@ -65,14 +65,14 @@
       test('de code elementen worden gevormd en toegevoegd waarna de Prism highlight functie aangeroepen wordt', () => {
         sandbox.stub(Prism, 'highlightAllUnder');
         const demo = fixture('vl-demo-fixture');
-        assert.equal(demo._codeElement.textContent, '<span>dit is een demo</span>\n\t\t\t<span>dit is een demo</span>');
+        assert.equal(demo._codeElement.textContent, '\n        <span>dit is een demo</span>\n        <span>dit is een demo</span>\n      ');
         assert(Prism.highlightAllUnder.calledWith(demo._preElement));
       });
 
       test('class attribuut zal verwijderd worden', () => {
         sandbox.stub(Prism, 'highlightAllUnder');
         const demo = fixture('vl-demo-class-fixture');
-        assert.equal(demo._codeElement.textContent, '<span>dit is een demo</span>');
+        assert.equal(demo._codeElement.textContent, '\n        <span>dit is een demo</span>\n      ');
         assert(Prism.highlightAllUnder.calledWith(demo._preElement));
       });
     });

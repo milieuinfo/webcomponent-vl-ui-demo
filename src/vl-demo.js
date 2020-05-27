@@ -62,9 +62,18 @@ export class VlDemo extends VlElement(HTMLElement) {
     }
 
     _renderCode() {
-        const elements = this._slotElement.assignedElements().map(element => this._getCode(element.cloneNode(true))).join('\n\t\t\t');
-        this._codeElement.appendChild(this._template(`${elements}`));
+        this._prepareCode();
         Prism.highlightAllUnder(this._preElement);
+    }
+
+    _prepareCode() {
+        const assignedElements = this._slotElement.assignedElements();
+        if (assignedElements && assignedElements.length > 0) {
+            const code = assignedElements[0].parentElement.cloneNode(true);
+            [...code.children].forEach(child => child.removeAttribute('class'));
+            this._codeElement.insertAdjacentHTML('afterbegin', this._getCode(code));
+            code.remove();
+        }
     }
 
     _titleChangedCallback(oldValue, newValue) {
@@ -72,17 +81,10 @@ export class VlDemo extends VlElement(HTMLElement) {
     }
 
     _getCode(element) {
-        element = this._removeClassAttribute(element);
-        let code = element.outerHTML;
+        let code = element.innerHTML;
         code = this._escapeTags(code);
         code = this._stripEmptyAttributeDefinition(code);
-        code = this._normalizeWhitespace(code);
         return code;
-    }
-
-    _removeClassAttribute(element) {
-        element.removeAttribute('class');
-        return element;
     }
 
     _escapeTags(code) {
@@ -92,12 +94,6 @@ export class VlDemo extends VlElement(HTMLElement) {
 
     _stripEmptyAttributeDefinition(code) {
         return code.split('=""').join('');
-    }
-
-    _normalizeWhitespace(code) {
-        return Prism.plugins.NormalizeWhitespace.normalize(code, {
-            'spaces-to-tabs': 4
-        });
     }
 }
 
