@@ -44,7 +44,7 @@
 		"demo": "http-server"
 	},
 	"dependencies": {
-		"prismjs": "1.17.1",
+		"prismjs": "1.20.0",
 		"vl-ui-content-header": "^3.0.1",
 		"vl-ui-core": "^5.5.0",
 		"vl-ui-footer": "^3.1.0",
@@ -61,7 +61,7 @@
 		"vl-ui-grid": "^3.0.2",
 		"vl-ui-content-header": "^3.0.1",
 		"vl-ui-titles": "^3.0.1",
-		"prismjs": "1.17.1"
+		"prismjs": "1.20.0"
 	},
 	"devDependencies": {
 		"@govflanders/vl-ui-util": "3.9.2",
