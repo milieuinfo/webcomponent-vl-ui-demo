@@ -37,7 +37,7 @@
 
   <script>
     suite('<vl-demo>', () => {
-      const sandbox = sinon.sandbox.create();
+      const sandbox = sinon.createSandbox();
 
       teardown(() => {
         sandbox.restore();
