@@ -36,7 +36,6 @@
         const template = page.shadowRoot.querySelector('vl-template');
         const main = template.querySelector('[slot="main"]');
         const contentHeader = main.querySelector('vl-content-header');
-        const img = contentHeader.querySelector('img');
         const contextLink = contentHeader.querySelector('a[slot="context-link"]');
         const titleLink = contentHeader.querySelector('a[slot="title-link"]');
         should.exist(contentHeader);
@@ -89,7 +88,7 @@
         const columns = page.shadowRoot.querySelectorAll('[is="vl-column"]');
         const title = columns[0].querySelector('h2[is="vl-h2"]');
         const slot = columns[0].querySelector('slot');
-        assert.equal(title.innerText, "Demo's");
+        assert.equal(title.innerText, 'Demo\'s');
         assert.deepEqual(slot.assignedElements(), [...page.querySelectorAll('vl-demo')]);
       });
     });
