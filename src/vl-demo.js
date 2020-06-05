@@ -26,19 +26,23 @@ export class VlDemo extends vlElement(HTMLElement) {
 
   constructor() {
     super(`
-        <style>
-            @import '/node_modules/vl-ui-titles/src/style.css';
-            @import '/src/style.css';
-        </style>
-        <div>
-            <h3 is="vl-h3">Demo</h3>
-            <div class="demo">
-                <slot></slot>
-            </div>
-            <pre class="line-numbers language-markup">
-                <code></code>
-            </pre>
-        </div>
+      <style>
+          @import '/node_modules/vl-ui-titles/src/style.css';
+          @import '/src/style.css';
+          :host {
+            display: block;
+            position: relative;
+          }
+      </style>
+      <div>
+          <h3 is="vl-h3">Demo</h3>
+          <div class="demo">
+              <slot></slot>
+          </div>
+          <pre class="line-numbers language-markup">
+              <code></code>
+          </pre>
+      </div>
     `);
   }
 
