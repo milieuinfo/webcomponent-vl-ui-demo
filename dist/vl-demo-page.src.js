@@ -43,7 +43,6 @@ code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shad
             }
         </style>
         <vl-template>
-            <vl-header id="header" slot="header" data-vl-identifier="59188ff6-662b-45b9-b23a-964ad48c2bfb" data-vl-development></vl-header>
             <div slot="main">
                 <vl-content-header>
                     <img is="vl-image" slot="image" src="/node_modules/vl-ui-demo/dist/default.jpg" srcset="/node_modules/vl-ui-demo/dist/mobile.jpg 320w, /node_modules/vl-ui-demo/dist/default.jpg 1024w, /node_modules/vl-ui-demo/dist/wide.jpg 1600w">
@@ -62,9 +61,22 @@ code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shad
                     </div>
                 </section>
             </div>
-            <vl-footer id="footer" slot="footer" data-vl-identifier="0337f8dc-3266-4e7a-8f4a-95fd65189e5b" data-vl-development></vl-footer>
         </vl-template>
     `);
+    const template = this._shadow.querySelector('vl-template');
+    const params = new URLSearchParams(VlDemoPage.getSearchParams());
+    const noHeader = !!params.get('no-header');
+    const noFooter = !!params.get('no-footer');
+    if (!noHeader) {
+      template.prepend(this._template(`<vl-header id="header" slot="header" data-vl-identifier="59188ff6-662b-45b9-b23a-964ad48c2bfb" data-vl-development></vl-header>`));
+    }
+    if (!noFooter) {
+      template.append(this._template(`<vl-footer id="footer" slot="footer" data-vl-identifier="0337f8dc-3266-4e7a-8f4a-95fd65189e5b" data-vl-development></vl-footer>`));
+    }
+  }
+  
+  static getSearchParams() {
+	  return window.location.search;
   }
 
   get _titleElement() {
