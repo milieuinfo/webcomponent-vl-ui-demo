@@ -61,7 +61,7 @@ export class VlDemoPage extends vlElement(HTMLElement) {
         </vl-template>
     `);
     const template = this._shadow.querySelector('vl-template');
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(VlDemoPage.getSearchParams());
     const noHeader = !!params.get('no-header');
     const noFooter = !!params.get('no-footer');
     if (!noHeader) {
@@ -70,6 +70,10 @@ export class VlDemoPage extends vlElement(HTMLElement) {
     if (!noFooter) {
       template.append(this._template(`<vl-footer id="footer" slot="footer" data-vl-identifier="0337f8dc-3266-4e7a-8f4a-95fd65189e5b" data-vl-development></vl-footer>`));
     }
+  }
+  
+  static getSearchParams() {
+	  return window.location.search;
   }
 
   get _titleElement() {
