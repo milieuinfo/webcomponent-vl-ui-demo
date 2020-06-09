@@ -21,9 +21,8 @@
   </test-fixture>
 
   <script type="module">
-    
-	import { VlDemoPage } from '../../src/vl-demo-page.js'; 
-  
+    import {VlDemoPage} from '../../src/vl-demo-page.js';
+
     suite('<vl-demo-page>', () => {
       const should = chai.should();
       const sandbox = sinon.createSandbox();
@@ -31,7 +30,7 @@
       teardown(() => {
         sandbox.restore();
       });
-      
+    
       test('bevat een vl-template met main slot', () => {
         const page = fixture('vl-demo-page-fixture');
         const template = page.shadowRoot.querySelector('vl-template');
@@ -43,30 +42,30 @@
       test('bevat vl-header en vl-footer', () => {
         const page = fixture('vl-demo-page-fixture');
         const template = page.shadowRoot.querySelector('vl-template');
-        should.exist(template.querySelector("vl-header"));
-        should.exist(template.querySelector("vl-footer"));
+        should.exist(template.querySelector('vl-header'));
+        should.exist(template.querySelector('vl-footer'));
       });
 
       test('bevat geen vl-header als dat in de query parameters gevraagd wordt', () => {
-		sandbox.stub(VlDemoPage, "getSearchParams").withArgs().returns('?no-header=true');
+        sandbox.stub(VlDemoPage, 'getSearchParams').withArgs().returns('?no-header=true');
         const page = fixture('vl-demo-page-fixture');
         const template = page.shadowRoot.querySelector('vl-template');
-        should.not.exist(template.querySelector("vl-header"));
+        should.not.exist(template.querySelector('vl-header'));
       });
 
       test('bevat geen vl-footer als dat in de query parameters gevraagd wordt', () => {
-		sandbox.stub(VlDemoPage, "getSearchParams").withArgs().returns('?no-footer=true');
+        sandbox.stub(VlDemoPage, 'getSearchParams').withArgs().returns('?no-footer=true');
         const page = fixture('vl-demo-page-fixture');
         const template = page.shadowRoot.querySelector('vl-template');
-        should.not.exist(template.querySelector("vl-footer"));
+        should.not.exist(template.querySelector('vl-footer'));
       });
 
       test('bevat geen vl-header en  vl-footer als dat in de query parameters gevraagd wordt', () => {
-		sandbox.stub(VlDemoPage, "getSearchParams").withArgs().returns('?no-header=true&no-footer=true');
+        sandbox.stub(VlDemoPage, 'getSearchParams').withArgs().returns('?no-header=true&no-footer=true');
         const page = fixture('vl-demo-page-fixture');
         const template = page.shadowRoot.querySelector('vl-template');
-        should.not.exist(template.querySelector("vl-header"));
-        should.not.exist(template.querySelector("vl-footer"));
+        should.not.exist(template.querySelector('vl-header'));
+        should.not.exist(template.querySelector('vl-footer'));
       });
 
       test('bevat een vl-content-header', () => {

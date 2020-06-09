@@ -28,7 +28,7 @@ export class VlDemo extends vlElement(HTMLElement) {
     super(`
       <style>
           @import '/node_modules/vl-ui-titles/src/style.css';
-          @import /node_modules/vl-ui-demo/dist/style.css;
+          @import '/node_modules/vl-ui-demo/dist/style.css';
           :host {
             display: block;
             position: relative;

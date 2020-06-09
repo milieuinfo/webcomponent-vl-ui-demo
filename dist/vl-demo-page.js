@@ -29,36 +29,36 @@ export class VlDemoPage extends vlElement(HTMLElement) {
 
   constructor() {
     super(`
-        <style>
-            @import '/node_modules/vl-ui-grid/src/style.css';
-            @import '/node_modules/vl-ui-titles/src/style.css';
-            @import /node_modules/vl-ui-demo/dist/style.css;
+      <style>
+        @import '/node_modules/vl-ui-grid/src/style.css';
+        @import '/node_modules/vl-ui-titles/src/style.css';
+        @import '/node_modules/vl-ui-demo/dist/style.css';
 
-            ::slotted(vl-demo:not(:first-child)) {
-                display: block;
-                margin-top: 3rem;
-            }
-        </style>
-        <vl-template>
-            <div slot="main">
-                <vl-content-header>
-                    <img is="vl-image" slot="image" src="/node_modules/vl-ui-demo/dist/default.jpg" srcset="/node_modules/vl-ui-demo/dist/mobile.jpg 320w, /node_modules/vl-ui-demo/dist/default.jpg 1024w, /node_modules/vl-ui-demo/dist/wide.jpg 1600w">
-                    <a slot="context-link" href="https://webcomponenten.omgeving.vlaanderen.be">Vlaanderen</a>
-                    <a slot="title-link" href="https://webcomponenten.omgeving.vlaanderen.be">Webcomponenten</a>
-                </vl-content-header>
-                <section is="vl-region">
-                    <div is="vl-layout">
-                        <h1 is="vl-h1"></h1>
-                        <div id="grid" is="vl-grid" is-stacked slot="main">
-                            <div id="demo" is="vl-column" size="12">
-                                <h2 is="vl-h2">Demo's</h2>
-                                <slot></slot>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        ::slotted(vl-demo:not(:first-child)) {
+            display: block;
+            margin-top: 3rem;
+        }
+      </style>
+      <vl-template>
+        <div slot="main">
+          <vl-content-header>
+            <img is="vl-image" slot="image" src="/node_modules/vl-ui-demo/dist/default.jpg" srcset="/node_modules/vl-ui-demo/dist/mobile.jpg 320w, /node_modules/vl-ui-demo/dist/default.jpg 1024w, /node_modules/vl-ui-demo/dist/wide.jpg 1600w">
+            <a slot="context-link" href="https://webcomponenten.omgeving.vlaanderen.be">Vlaanderen</a>
+            <a slot="title-link" href="https://webcomponenten.omgeving.vlaanderen.be">Webcomponenten</a>
+          </vl-content-header>
+          <section is="vl-region">
+            <div is="vl-layout">
+              <h1 is="vl-h1"></h1>
+              <div id="grid" is="vl-grid" is-stacked slot="main">
+                <div id="demo" is="vl-column" size="12">
+                  <h2 is="vl-h2">Demo's</h2>
+                  <slot></slot>
+                </div>
+              </div>
             </div>
-        </vl-template>
+          </section>
+        </div>
+      </vl-template>
     `);
     const template = this._shadow.querySelector('vl-template');
     const params = new URLSearchParams(VlDemoPage.getSearchParams());
@@ -71,9 +71,9 @@ export class VlDemoPage extends vlElement(HTMLElement) {
       template.append(this._template(`<vl-footer id="footer" slot="footer" data-vl-identifier="0337f8dc-3266-4e7a-8f4a-95fd65189e5b" data-vl-development></vl-footer>`));
     }
   }
-  
+
   static getSearchParams() {
-	  return window.location.search;
+    return window.location.search;
   }
 
   get _titleElement() {
@@ -94,12 +94,12 @@ export class VlDemoPage extends vlElement(HTMLElement) {
 
   _getLinkTemplate(link) {
     return this._template(`
-        <div id="link" is="vl-column" size="12">
-            <h2 is="vl-h2">Documentatie</h2>
-            <p>
-                Meer voorbeelden en documentatie raadpleegbaar via de <a href="${link}">website</a> van Webuniversum.
-            </p>
-        </div>
+      <div id="link" is="vl-column" size="12">
+        <h2 is="vl-h2">Documentatie</h2>
+        <p>
+          Meer voorbeelden en documentatie raadpleegbaar via de <a href="${link}">website</a> van Webuniversum.
+        </p>
+      </div>
     `);
   }
 

@@ -1,8 +1,8 @@
-import {vlElement, define} from vl-ui-core;
-import prismjs/prism.js;
-import prismjs/plugins/line-numbers/prism-line-numbers.js;
-import prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js;
-import vl-ui-titles;
+import {vlElement, define} from 'vl-ui-core';
+import 'prismjs/prism.js';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
+import 'vl-ui-titles';
 
 /**
  * VlDemo
