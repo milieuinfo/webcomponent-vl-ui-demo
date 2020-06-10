@@ -10,7 +10,6 @@ import '/node_modules/vl-ui-titles/dist/vl-titles.js';
  * @classdesc
  *
  * @extends HTMLElement
- * @mixin vlElement
  *
  * @property {boolean} data-vl-title - Attribuut wordt gebruikt om de demo titel aan te geven.
  *

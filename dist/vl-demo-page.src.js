@@ -12,7 +12,6 @@ import 'vl-ui-footer';
  * @classdesc
  *
  * @extends HTMLElement
- * @mixin vlElement
  *
  * @property {boolean} data-vl-link - Attribuut wordt gebruikt om de link naar de documentatie van Webuniversum te bepalen.
  * @property {boolean} data-vl-webcomponent - Attribuut wordt gebruikt om aan te geven over welke webcomponent de demo pagina gaat.
