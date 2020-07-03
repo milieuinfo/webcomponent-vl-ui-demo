@@ -57,7 +57,7 @@
 		"prismjs": "1.20.0"
 	},
 	"devDependencies": {
-		"@govflanders/vl-ui-util": "3.9.2",
+		"@govflanders/vl-ui-util": "3.10.1",
 		"vl-ui-util": "^5.2.8"
 	}
 }
