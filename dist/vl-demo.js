@@ -1,8 +1,7 @@
 import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
-import '/node_modules/prismjs/prism.js';
-import '/node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js';
-import '/node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
+import '/node_modules/vl-ui-grid/dist/vl-grid.js';
 import '/node_modules/vl-ui-titles/dist/vl-titles.js';
+import '/node_modules/vl-ui-code-preview/dist/vl-code-preview.js';
 
 /**
  * VlDemo
@@ -10,6 +9,7 @@ import '/node_modules/vl-ui-titles/dist/vl-titles.js';
  * @classdesc
  *
  * @extends HTMLElement
+ * @mixes vlElement
  *
  * @property {boolean} data-vl-title - Attribuut wordt gebruikt om de demo titel aan te geven.
  *
@@ -26,21 +26,29 @@ export class VlDemo extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-          @import '/node_modules/vl-ui-titles/src/style.css';
-          @import '/node_modules/vl-ui-demo/dist/style.css';
-          :host {
-            display: block;
-            position: relative;
-          }
+        @import '/node_modules/vl-ui-grid/src/style.css';
+        @import '/node_modules/vl-ui-titles/src/style.css';
+        @import '/node_modules/vl-ui-demo/dist/style.css';
+        :host {
+          display: block;
+          position: relative;
+        }
       </style>
-      <div>
+      <div is="vl-grid" data-vl-is-stacked>
+        <div is="vl-column" data-vl-size="12">
           <h3 is="vl-h3">Demo</h3>
-          <div class="demo">
-              <slot></slot>
-          </div>
+          <slot class="demo"></slot>
+        </div>
+        <div id="actions" is="vl-column" data-vl-size="12">
+          <slot name="actions"></slot>
+        </div>
+        <div is="vl-column" data-vl-size="12">
+          <vl-code-preview></vl-code-preview>
+
           <pre class="line-numbers language-markup">
-              <code></code>
+            <code></code>
           </pre>
+        </div>
       </div>
     `);
   }
@@ -61,13 +69,28 @@ export class VlDemo extends vlElement(HTMLElement) {
     return this._shadow.querySelector('slot');
   }
 
+  get _actionsElement() {
+    return this._shadow.querySelector('#actions');
+  }
+
+  get _actionsSlotElement() {
+    return this._shadow.querySelector('slot[name="actions"]');
+  }
+
   connectedCallback() {
     this._renderCode();
+    this._processActions();
   }
 
   _renderCode() {
     this._prepareCode();
     Prism.highlightAllUnder(this._preElement);
+  }
+
+  _processActions() {
+    if (this._actionsSlotElement.assignedElements().length == 0) {
+      this._actionsElement.remove();
+    }
   }
 
   _prepareCode() {
