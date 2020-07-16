@@ -12,6 +12,7 @@ import '/node_modules/vl-ui-footer/dist/vl-footer.js';
  * @classdesc
  *
  * @extends HTMLElement
+ * @mixes vlElement
  *
  * @property {boolean} data-vl-link - Attribuut wordt gebruikt om de link naar de documentatie van Webuniversum te bepalen.
  * @property {boolean} data-vl-webcomponent - Attribuut wordt gebruikt om aan te geven over welke webcomponent de demo pagina gaat.
@@ -34,8 +35,8 @@ export class VlDemoPage extends vlElement(HTMLElement) {
         @import '/node_modules/vl-ui-demo/dist/style.css';
 
         ::slotted(vl-demo:not(:first-child)) {
-            display: block;
-            margin-top: 3rem;
+          display: block;
+          margin-top: 3rem;
         }
       </style>
       <vl-template>
@@ -49,7 +50,7 @@ export class VlDemoPage extends vlElement(HTMLElement) {
             <div is="vl-layout">
               <h1 is="vl-h1"></h1>
               <div id="grid" is="vl-grid" is-stacked slot="main">
-                <div id="demo" is="vl-column" size="12">
+                <div id="demo" is="vl-column">
                   <h2 is="vl-h2">Demo's</h2>
                   <slot></slot>
                 </div>
