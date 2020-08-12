@@ -1,7 +1,7 @@
 import {vlElement, define} from 'vl-ui-core';
+import 'vl-ui-code-preview';
 import 'vl-ui-grid';
 import 'vl-ui-titles';
-import 'vl-ui-code-preview';
 
 /**
  * VlDemo

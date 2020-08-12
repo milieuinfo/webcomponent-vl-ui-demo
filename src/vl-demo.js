@@ -1,7 +1,7 @@
 import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
+import '/node_modules/vl-ui-code-preview/dist/vl-code-preview.js';
 import '/node_modules/vl-ui-grid/dist/vl-grid.js';
 import '/node_modules/vl-ui-titles/dist/vl-titles.js';
-import '/node_modules/vl-ui-code-preview/dist/vl-code-preview.js';
 
 /**
  * VlDemo
