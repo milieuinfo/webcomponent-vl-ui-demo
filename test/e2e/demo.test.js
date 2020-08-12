@@ -25,7 +25,7 @@ describe('vl-demo', async () => {
     const slotElement = await new VlElement(driver, slotElements[0]);
     await assert.eventually.equal(slotElement.getText(), 'dit is een demo');
     const code = await demo.getCode();
-    await assert.eventually.equal(code.getTextContent(), '<p>dit is een demo</p>');
+    await assert.eventually.equal(code.getText(), '<p>dit is een demo</p>');
     await assert.eventually.isTrue(code.isDisplayed());
   });
 });

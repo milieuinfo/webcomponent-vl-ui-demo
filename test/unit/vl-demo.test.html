@@ -37,7 +37,8 @@
   </test-fixture>
 
   <script>
-    suite('<vl-demo>', () => {
+    suite('vl-demo', () => {
+      const should = chai.should();
       const sandbox = sinon.createSandbox();
 
       teardown(() => {
@@ -56,24 +57,12 @@
         assert.equal(demo._titleElement.innerText, title);
       });
 
-      test('bevat een pre tag met line-numbers en language-markup classes', () => {
+      test('bevat een code preview component met de code elementen', () => {
         const demo = fixture('vl-demo-fixture');
-        assert.isTrue(demo._preElement.classList.contains('line-numbers'));
-        assert.isTrue(demo._preElement.classList.contains('language-markup'));
-      });
-
-      test('de code elementen worden gevormd en toegevoegd waarna de Prism highlight functie aangeroepen wordt', () => {
-        sandbox.stub(Prism, 'highlightAllUnder');
-        const demo = fixture('vl-demo-fixture');
-        assert.equal(demo._codeElement.textContent, '\n        <span>dit is een demo</span>\n        <span>dit is een demo</span>\n      ');
-        assert(Prism.highlightAllUnder.calledWith(demo._preElement));
-      });
-
-      test('class attribuut zal verwijderd worden', () => {
-        sandbox.stub(Prism, 'highlightAllUnder');
-        const demo = fixture('vl-demo-class-fixture');
-        assert.equal(demo._codeElement.textContent, '\n        <span>dit is een demo</span>\n      ');
-        assert(Prism.highlightAllUnder.calledWith(demo._preElement));
+        const previewContainer = demo._codePreviewContainerElement;
+        const preview = previewContainer.querySelector('vl-code-preview');
+        should.exist(preview);
+        assert.equal(preview.shadowRoot.querySelector('code').innerText, '<span>dit is een demo</span><span>dit is een demo</span>');
       });
     });
   </script>

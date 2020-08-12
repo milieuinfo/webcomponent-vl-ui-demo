@@ -1,15 +1,15 @@
 import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
-import '/node_modules/prismjs/prism.js';
-import '/node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js';
-import '/node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
+import '/node_modules/vl-ui-grid/dist/vl-grid.js';
 import '/node_modules/vl-ui-titles/dist/vl-titles.js';
+import '/node_modules/vl-ui-code-preview/dist/vl-code-preview.js';
 
 /**
  * VlDemo
  * @class
- * @classdesc
+ * @classdesc De demo component wordt gebruikt om code voorbeelden te geven inclusief zichtbaar maken van achterliggende code.
  *
  * @extends HTMLElement
+ * @mixes vlElement
  *
  * @property {boolean} data-vl-title - Attribuut wordt gebruikt om de demo titel aan te geven.
  *
@@ -26,21 +26,19 @@ export class VlDemo extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-          @import '/node_modules/vl-ui-titles/src/style.css';
-          @import '/src/style.css';
-          :host {
-            display: block;
-            position: relative;
-          }
+        @import '/node_modules/vl-ui-grid/src/style.css';
+        @import '/node_modules/vl-ui-titles/src/style.css';
+        @import '/src/style.css';
       </style>
-      <div>
+      <div is="vl-grid" data-vl-is-stacked>
+        <div is="vl-column" data-vl-size="12">
           <h3 is="vl-h3">Demo</h3>
-          <div class="demo">
-              <slot></slot>
-          </div>
-          <pre class="line-numbers language-markup">
-              <code></code>
-          </pre>
+          <slot class="demo"></slot>
+        </div>
+        <div id="actions" is="vl-column" data-vl-size="12">
+          <slot name="actions"></slot>
+        </div>
+        <div id="code-preview-container" is="vl-column" data-vl-size="12"></div>
       </div>
     `);
   }
@@ -49,55 +47,56 @@ export class VlDemo extends vlElement(HTMLElement) {
     return this._shadow.querySelector('h3');
   }
 
-  get _preElement() {
-    return this._shadow.querySelector('pre');
-  }
-
   get _codeElement() {
-    return this._preElement.querySelector('code');
+    return this._shadow.querySelector('vl-code-preview');
   }
 
   get _slotElement() {
     return this._shadow.querySelector('slot');
   }
 
+  get _actionsElement() {
+    return this._shadow.querySelector('#actions');
+  }
+
+  get _actionsSlotElement() {
+    return this._shadow.querySelector('slot[name="actions"]');
+  }
+
+  get _codePreviewContainerElement() {
+    return this._shadow.querySelector('#code-preview-container');
+  }
+
+  _getCodePreviewTemplate(html) {
+    return this._template(`
+      <vl-code-preview>
+        ${html}
+      </vl-code-preview>
+    `);
+  }
+
   connectedCallback() {
     this._renderCode();
+    this._processActions();
   }
 
   _renderCode() {
-    this._prepareCode();
-    Prism.highlightAllUnder(this._preElement);
-  }
-
-  _prepareCode() {
     const assignedElements = this._slotElement.assignedElements();
     if (assignedElements && assignedElements.length > 0) {
       const code = assignedElements[0].parentElement.cloneNode(true);
-      [...code.children].forEach((child) => child.removeAttribute('class'));
-      this._codeElement.insertAdjacentHTML('afterbegin', this._getCode(code));
+      this._codePreviewContainerElement.append(this._getCodePreviewTemplate(code.innerHTML));
       code.remove();
+    }
+  }
+
+  _processActions() {
+    if (this._actionsSlotElement.assignedElements().length == 0) {
+      this._actionsElement.remove();
     }
   }
 
   _titleChangedCallback(oldValue, newValue) {
     this._titleElement.innerText = newValue;
-  }
-
-  _getCode(element) {
-    let code = element.innerHTML;
-    code = this._escapeTags(code);
-    code = this._stripEmptyAttributeDefinition(code);
-    return code;
-  }
-
-  _escapeTags(code) {
-    const regex = /[\u00A0-\u9999<>&](?!#)/gim;
-    return code.replace(regex, (match) => '&#' + match.charCodeAt(0) + ';');
-  }
-
-  _stripEmptyAttributeDefinition(code) {
-    return code.split('=""').join('');
   }
 }
 
