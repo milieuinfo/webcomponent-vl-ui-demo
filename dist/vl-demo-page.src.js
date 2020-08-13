@@ -63,6 +63,7 @@ export class VlDemoPage extends vlElement(HTMLElement) {
         </div>
       </vl-template>
     `);
+    this._addMetaTag();
     const template = this._shadow.querySelector('vl-template');
     const params = new URLSearchParams(VlDemoPage.getSearchParams());
     const noHeader = !!params.get('no-header');
@@ -115,6 +116,13 @@ export class VlDemoPage extends vlElement(HTMLElement) {
 
   _webcomponentChangedCallback(oldValue, newValue) {
     this._titleElement.innerText = `Demo ${newValue}`;
+  }
+
+  _addMetaTag() {
+    const meta = document.createElement('meta');
+    meta.name = 'viewport';
+    meta.content = 'width=device-width, initial-scale=1.0';
+    document.head.appendChild(meta);
   }
 }
 
