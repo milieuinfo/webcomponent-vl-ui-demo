@@ -23,7 +23,7 @@
   <script type="module">
     import {VlDemoPage} from '../../src/vl-demo-page.js';
 
-    suite('<vl-demo-page>', () => {
+    suite('vl-demo-page', () => {
       const should = chai.should();
       const sandbox = sinon.createSandbox();
 
@@ -127,6 +127,13 @@
         const slot = columns[0].querySelector('slot');
         assert.equal(title.innerText, 'Demo\'s');
         assert.deepEqual(slot.assignedElements(), [...page.querySelectorAll('vl-demo')]);
+      });
+
+      test('voegt een meta tag toe voor responsive rendering op mobiele toestellen', () => {
+        fixture('vl-demo-page-fixture');
+        const meta = document.head.querySelector('meta[name="viewport"]');
+        should.exist(meta);
+        assert.equal(meta.content, 'width=device-width, initial-scale=1.0');
       });
     });
   </script>
