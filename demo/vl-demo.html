@@ -3,17 +3,23 @@
 
 <head>
     <title>vl-demo voorbeeld</title>
-
     <script type="module" src="/src/vl-demo-all.js"></script>
+    <script type="module" src="/node_modules/vl-ui-action-group/dist/vl-action-group.js"></script>
+    <script type="module" src="/node_modules/vl-ui-button/dist/vl-button.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-core/dist/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-action-group/dist/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-button/dist/style.css" />
 </head>
 
 <body>
-    <vl-demo-page id="demo-page" data-vl-webcomponent="vl-demo"
-        data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-button">
+    <vl-demo-page id="demo-page" data-vl-webcomponent="vl-demo" data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-button">
         <vl-demo data-vl-title="Demo 1">
-            <p>dit is een demo</p>
+            <div is="vl-grid" data-vl-is-stacked>
+                <div is="vl-column" data-vl-size="12">
+                    <p>dit is een demo</p>
+                </div>
+            </div>
         </vl-demo>
 
         <vl-demo data-vl-title="Demo 2">
@@ -24,9 +30,11 @@
         <vl-demo data-vl-title="Demo 3">
             <p>dit is een demo</p>
             <p>dit is een demo</p>
-            <p>
-                <span>dit is een demo</span>
-            </p>
+            <div is="vl-action-group" slot="actions">
+                <button is="vl-button" type="button">Actie 1</button>
+                <button is="vl-button" type="button">Actie 2</button>
+                <button is="vl-button" type="button">Actie 3</button>
+            </div>
         </vl-demo>
     </vl-demo-page>
 </body>

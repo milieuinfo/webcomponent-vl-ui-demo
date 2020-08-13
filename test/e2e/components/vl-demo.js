@@ -1,6 +1,7 @@
 const {VlElement} = require('vl-ui-core').Test;
 const {By} = require('vl-ui-core').Test.Setup;
 const {VlH1} = require('vl-ui-titles').Test.VlTitles;
+const {VlCodePreview} = require('vl-ui-code-preview').Test;
 
 class VlDemo extends VlElement {
   async getTitle() {
@@ -14,8 +15,8 @@ class VlDemo extends VlElement {
   }
 
   async getCode() {
-    const element = await this.shadowRoot.findElement(By.css('code'));
-    return new VlElement(this.driver, element);
+    const element = await this.shadowRoot.findElement(By.css('vl-code-preview'));
+    return new VlCodePreview(this.driver, element);
   }
 }
 

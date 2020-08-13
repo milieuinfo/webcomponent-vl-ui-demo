@@ -3,18 +3,8 @@
 // ==========================================================================
 @charset "utf-8";
 
-// ==========================================================================
-// Style
-// ==========================================================================
-@import "../../node_modules/prismjs/themes/prism.css";
-@import "../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
-
 .demo {
-    border: 1px dotted lightgray;
+    display: block;
+    border: 1px solid #e8ebee;
+    padding: 1rem;
 }
-  
-pre {
-    border: 1px dotted lightgray !important;
-    background: #f7f7f8 !important;
-    white-space: pre-wrap !important;
-} 
