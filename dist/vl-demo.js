@@ -1,7 +1,5 @@
 import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
 import '/node_modules/vl-ui-code-preview/dist/vl-code-preview.js';
-import '/node_modules/vl-ui-grid/dist/vl-grid.js';
-import '/node_modules/vl-ui-titles/dist/vl-titles.js';
 
 /**
  * VlDemo
@@ -41,6 +39,8 @@ export class VlDemo extends vlElement(HTMLElement) {
         <div id="code-preview-container" is="vl-column" data-vl-size="12"></div>
       </div>
     `);
+    import('/node_modules/vl-ui-grid/dist/vl-grid.js');
+    import('/node_modules/vl-ui-titles/dist/vl-titles.js');
   }
 
   get _titleElement() {

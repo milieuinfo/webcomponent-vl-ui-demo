@@ -1,7 +1,5 @@
 import {vlElement, define} from 'vl-ui-core';
 import 'vl-ui-code-preview';
-import 'vl-ui-grid';
-import 'vl-ui-titles';
 
 /**
  * VlDemo
@@ -44,6 +42,8 @@ export class VlDemo extends vlElement(HTMLElement) {
         <div id="code-preview-container" is="vl-column" data-vl-size="12"></div>
       </div>
     `);
+    import('vl-ui-grid');
+    import('vl-ui-titles');
   }
 
   get _titleElement() {
