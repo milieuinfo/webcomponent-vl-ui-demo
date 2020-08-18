@@ -135,6 +135,34 @@
         should.exist(meta);
         assert.equal(meta.content, 'width=device-width, initial-scale=1.0');
       });
+
+      test('size attributen worden doorgegeven aan het demo element', () => {
+        const page = fixture('vl-demo-page-fixture');
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-size'));
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-medium-size'));
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-small-size'));
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-extra-small-size'));
+        page.setAttribute('data-vl-size', 12);
+        assert.equal(page._demoElement.getAttribute('data-vl-size'), 12);
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-medium-size'));
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-small-size'));
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-extra-small-size'));
+        page.setAttribute('data-vl-medium-size', 10);
+        assert.equal(page._demoElement.getAttribute('data-vl-size'), 12);
+        assert.equal(page._demoElement.getAttribute('data-vl-medium-size'), 10);
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-small-size'));
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-extra-small-size'));
+        page.setAttribute('data-vl-small-size', 8);
+        assert.equal(page._demoElement.getAttribute('data-vl-size'), 12);
+        assert.equal(page._demoElement.getAttribute('data-vl-medium-size'), 10);
+        assert.equal(page._demoElement.getAttribute('data-vl-small-size'), 8);
+        assert.isFalse(page._demoElement.hasAttribute('data-vl-extra-small-size'));
+        page.setAttribute('data-vl-extra-small-size', 6);
+        assert.equal(page._demoElement.getAttribute('data-vl-size'), 12);
+        assert.equal(page._demoElement.getAttribute('data-vl-medium-size'), 10);
+        assert.equal(page._demoElement.getAttribute('data-vl-small-size'), 8);
+        assert.equal(page._demoElement.getAttribute('data-vl-extra-small-size'), 6);
+      });
     });
   </script>
 </body>
