@@ -35,6 +35,7 @@ export class VlDemo extends vlElement(HTMLElement) {
         <div is="vl-column" data-vl-size="12">
           <h3 is="vl-h3">Demo</h3>
           <slot class="demo"></slot>
+          <slot name="code"></slot>
         </div>
         <div id="actions" is="vl-column" data-vl-size="12">
           <slot name="actions"></slot>
@@ -55,7 +56,7 @@ export class VlDemo extends vlElement(HTMLElement) {
   }
 
   get _slotElement() {
-    return this._shadow.querySelector('slot');
+    return this._shadow.querySelector('slot.demo');
   }
 
   get _actionsElement() {
@@ -80,6 +81,7 @@ export class VlDemo extends vlElement(HTMLElement) {
 
   connectedCallback() {
     this._renderCode();
+    this._processChildren();
     this._processActions();
   }
 
@@ -89,6 +91,13 @@ export class VlDemo extends vlElement(HTMLElement) {
       const code = assignedElements[0].parentElement.cloneNode(true);
       this._codePreviewContainerElement.append(this._getCodePreviewTemplate(code.innerHTML));
       code.remove();
+    }
+  }
+
+  _processChildren() {
+    const hasSlotChild = [...this.children].find((child) => !child.hasAttribute('slot'));
+    if (!hasSlotChild) {
+      this._slotElement.remove();
     }
   }
 
