@@ -36,6 +36,14 @@
     </template>
   </test-fixture>
 
+  <test-fixture id="vl-demo-empty-fixture">
+    <template>
+      <vl-demo>
+        <vl-code-preview slot="code">dit is een cod preview</vl-code-preview>
+      </vl-demo>
+    </template>
+  </test-fixture>
+
   <script>
     suite('vl-demo', () => {
       const should = chai.should();
@@ -63,6 +71,13 @@
         const preview = previewContainer.querySelector('vl-code-preview');
         should.exist(preview);
         assert.equal(preview.shadowRoot.querySelector('code').innerText, '<span>dit is een demo</span><span>dit is een demo</span>');
+      });
+
+      test('kan alleen een code voorbeeld toevoegen via het code slot element', () => {
+        const demo = fixture('vl-demo-empty-fixture');
+        should.not.exist(demo._slotElement);
+        should.exist(demo.shadowRoot.querySelector('slot[name="code"]'));
+        assert.equal(demo.shadowRoot.querySelector('slot[name="code"]').assignedElements()[0], demo.querySelector('vl-code-preview'));
       });
     });
   </script>
