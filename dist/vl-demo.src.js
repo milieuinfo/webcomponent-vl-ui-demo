@@ -73,7 +73,7 @@ export class VlDemo extends vlElement(HTMLElement) {
 
   _getCodePreviewTemplate(html) {
     return this._template(`
-      <vl-code-preview>
+      <vl-code-preview tabindex="-1">
         ${html}
       </vl-code-preview>
     `);

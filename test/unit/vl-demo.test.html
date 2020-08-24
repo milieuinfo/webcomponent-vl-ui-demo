@@ -70,6 +70,7 @@
         const previewContainer = demo._codePreviewContainerElement;
         const preview = previewContainer.querySelector('vl-code-preview');
         should.exist(preview);
+        assert.equal(preview.tabIndex, -1);
         assert.equal(preview.shadowRoot.querySelector('code').innerText, '<span>dit is een demo</span><span>dit is een demo</span>');
       });
 
