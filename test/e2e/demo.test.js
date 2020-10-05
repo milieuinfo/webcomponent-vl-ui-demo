@@ -40,6 +40,6 @@ describe('vl-demo', async () => {
     const code = await demo.getCode();
     const text = await code.getText();
     await assert.include(text, '<div is="vl-grid" data-vl-is-stacked="">');
-    await assert.include(text, '<div is="vl-column" data-vl-size="12">');
+    await assert.include(text, '<div is="vl-column" data-vl-size="12" data-vl-medium-size="12">');
   });
 });
