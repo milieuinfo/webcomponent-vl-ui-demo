@@ -32,15 +32,15 @@ export class VlDemo extends vlElement(HTMLElement) {
 
       </style>
       <div is="vl-grid" data-vl-is-stacked>
-        <div is="vl-column" data-vl-size="12">
+        <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
           <h3 is="vl-h3">Demo</h3>
           <slot class="demo"></slot>
           <slot name="code"></slot>
         </div>
-        <div id="actions" is="vl-column" data-vl-size="12">
+        <div id="actions" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
           <slot name="actions"></slot>
         </div>
-        <div id="code-preview-container" is="vl-column" data-vl-size="12"></div>
+        <div id="code-preview-container" is="vl-column" data-vl-size="12" data-vl-medium-size="12"></div>
       </div>
     `);
     import('vl-ui-grid');
