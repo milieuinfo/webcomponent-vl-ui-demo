@@ -8,3 +8,7 @@
     border: 1px solid #e8ebee;
     padding: 1rem;
 }
+
+[is="vl-body"] > vl-demo-page {
+    flex: 1;
+}
