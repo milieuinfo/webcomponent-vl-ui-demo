@@ -68,18 +68,21 @@
         should.not.exist(template.querySelector('vl-footer'));
       });
 
-      test('bevat een vl-content-header', () => {
+      test('bevat een vl-functional-header', () => {
         const page = fixture('vl-demo-page-fixture');
+        const webcomponent = 'vl-demo';
+        page.setAttribute('data-vl-webcomponent', webcomponent);
         const template = page.shadowRoot.querySelector('vl-template');
         const main = template.querySelector('[slot="main"]');
-        const contentHeader = main.querySelector('vl-content-header');
-        const contextLink = contentHeader.querySelector('a[slot="context-link"]');
-        const titleLink = contentHeader.querySelector('a[slot="title-link"]');
-        should.exist(contentHeader);
-        should.exist(contextLink);
-        should.exist(titleLink);
-        assert.equal(contextLink.href, 'https://webcomponenten.omgeving.vlaanderen.be/');
-        assert.equal(titleLink.href, 'https://webcomponenten.omgeving.vlaanderen.be/');
+        const functionalHeader = main.querySelector('vl-functional-header');
+        const title = functionalHeader.querySelector('[slot="title"]');
+        const subTitle = functionalHeader.querySelector('[slot="sub-title"]');
+        const backLink = functionalHeader.querySelector('[slot="back"]');
+        should.exist(functionalHeader);
+        should.exist(title);
+        should.exist(subTitle);
+        should.exist(backLink);
+        assert.equal(subTitle.innerText, `Webcomponent ${webcomponent}`);
       });
 
       test('bevat een sectie met layout grid en kolommen', () => {
