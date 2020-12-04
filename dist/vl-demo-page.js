@@ -1,7 +1,7 @@
 import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
 import '/node_modules/vl-ui-template/dist/vl-template.js';
 import '/node_modules/vl-ui-header/dist/vl-header.js';
-import '/node_modules/vl-ui-content-header/dist/vl-content-header.js';
+import '/node_modules/vl-ui-functional-header/dist/vl-functional-header.js';
 import '/node_modules/vl-ui-grid/dist/vl-grid.js';
 import '/node_modules/vl-ui-titles/dist/vl-titles.js';
 import '/node_modules/vl-ui-footer/dist/vl-footer.js';
@@ -43,11 +43,11 @@ export class VlDemoPage extends vlElement(HTMLElement) {
       </style>
       <vl-template>
         <div slot="main">
-          <vl-content-header>
-            <img is="vl-image" slot="image" src="/node_modules/vl-ui-demo/dist/default.jpg" srcset="/node_modules/vl-ui-demo/dist/mobile.jpg 320w, /node_modules/vl-ui-demo/dist/default.jpg 1024w, /node_modules/vl-ui-demo/dist/wide.jpg 1600w">
-            <a slot="context-link" href="https://webcomponenten.omgeving.vlaanderen.be">Vlaanderen</a>
-            <a slot="title-link" href="https://webcomponenten.omgeving.vlaanderen.be">Webcomponenten</a>
-          </vl-content-header>
+          <vl-functional-header id="functional-header-slots" data-vl-link="https://webcomponenten.omgeving.vlaanderen.be">
+            <span slot="title">Webcomponenten</span>
+            <span slot="sub-title"></span>
+            <span slot="back">Terug</span>
+          </vl-functional-header>
           <section is="vl-region">
             <div is="vl-layout">
               <h1 is="vl-h1"></h1>
@@ -77,6 +77,10 @@ export class VlDemoPage extends vlElement(HTMLElement) {
 
   static getSearchParams() {
     return window.location.search;
+  }
+
+  get _functionalHeaderSubTitleElement() {
+    return this._shadow.querySelector('vl-functional-header [slot="sub-title"]');
   }
 
   get _titleElement() {
@@ -115,6 +119,7 @@ export class VlDemoPage extends vlElement(HTMLElement) {
 
   _webcomponentChangedCallback(oldValue, newValue) {
     this._titleElement.innerText = `Demo ${newValue}`;
+    this._functionalHeaderSubTitleElement.innerText = `Webcomponent ${newValue}`;
   }
 
   _sizeChangedCallback(oldValue, newValue) {
