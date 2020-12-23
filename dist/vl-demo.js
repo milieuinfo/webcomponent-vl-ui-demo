@@ -10,6 +10,7 @@ import '/node_modules/vl-ui-code-preview/dist/vl-code-preview.js';
  * @mixes vlElement
  *
  * @property {boolean} data-vl-title - Attribuut wordt gebruikt om de demo titel aan te geven.
+ * @property {boolean} data-vl-no-code-preview - Attribuut wordt gebruikt om aan te geven dat er geen code voorbeeld gegenereerd moet worden.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-demo/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-demo/issues|Issues}
@@ -18,7 +19,7 @@ import '/node_modules/vl-ui-code-preview/dist/vl-code-preview.js';
  */
 export class VlDemo extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return ['title'];
+    return ['title', 'no-code-preview'];
   }
 
   constructor() {
@@ -48,10 +49,6 @@ export class VlDemo extends vlElement(HTMLElement) {
     return this._shadow.querySelector('h3');
   }
 
-  get _codeElement() {
-    return this._shadow.querySelector('vl-code-preview');
-  }
-
   get _slotElement() {
     return this._shadow.querySelector('slot.demo');
   }
@@ -66,6 +63,10 @@ export class VlDemo extends vlElement(HTMLElement) {
 
   get _codePreviewContainerElement() {
     return this._shadow.querySelector('#code-preview-container');
+  }
+
+  get _hasNoCodePreview() {
+    return this.dataset.vlNoCodePreview != undefined;
   }
 
   _getCodePreviewTemplate(html) {
@@ -83,11 +84,13 @@ export class VlDemo extends vlElement(HTMLElement) {
   }
 
   _renderCode() {
-    const assignedElements = this._slotElement.assignedElements();
-    if (assignedElements && assignedElements.length > 0) {
-      const code = assignedElements[0].parentElement.cloneNode(true);
-      this._codePreviewContainerElement.append(this._getCodePreviewTemplate(code.innerHTML));
-      code.remove();
+    if (!this._hasNoCodePreview) {
+      const assignedElements = this._slotElement.assignedElements();
+      if (assignedElements && assignedElements.length > 0) {
+        const code = assignedElements[0].parentElement.cloneNode(true);
+        this._codePreviewContainerElement.append(this._getCodePreviewTemplate(code.innerHTML));
+        code.remove();
+      }
     }
   }
 
