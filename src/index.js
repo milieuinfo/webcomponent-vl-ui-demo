@@ -1,1 +1,1 @@
-export * from '../dist/vl-demo.src.js';
+export * from '../dist/vl-demo-all.src.js';
