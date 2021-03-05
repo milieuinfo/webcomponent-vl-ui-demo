@@ -12,6 +12,10 @@ describe('vl-demo', async () => {
     return vlDemoPagePage.load();
   });
 
+  it('WCAG', async () => {
+    await assert.eventually.isFalse(vlDemoPagePage.hasWcagIssues());
+  });
+
   it('als gebruiker kan ik de titel van de demo pagina bekijken', async () => {
     const demoPage = await vlDemoPagePage.getDemoPage();
     const title = await demoPage.getTitle();
